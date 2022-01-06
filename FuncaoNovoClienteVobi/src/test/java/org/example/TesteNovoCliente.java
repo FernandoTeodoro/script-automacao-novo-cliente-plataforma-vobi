@@ -2,19 +2,34 @@ package org.example;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import paginas.LoginPage;
+
+import java.time.Duration;
 
 public class TesteNovoCliente {
+
+    Dotenv dotenv = Dotenv.load();
+    String usuario = dotenv.get("USUARIO");
+    String senha = dotenv.get("SENHA");
+    private WebDriver navegador;
 
     @Test
     public void criandoNovoCliente(){
 
-        Dotenv dotenv = Dotenv.load();
-        String usuario = dotenv.get("USUARIO");
-        String senha = dotenv.get("SENHA");
-        WebDriver driver = new ChromeDriver();
+       this.navegador = new ChromeDriver();
+       this.navegador.navigate().to("https://plataforma.vobi.com.br/login/profissional");
+       this.navegador.manage().window().maximize();
 
+
+        new LoginPage(navegador)
+                .informarUsuario(this.usuario)
+                .informarSenha(this.senha)
+                .submeterFormularioDeLogin();
+//                .novoCliente()
     }
 
 }
