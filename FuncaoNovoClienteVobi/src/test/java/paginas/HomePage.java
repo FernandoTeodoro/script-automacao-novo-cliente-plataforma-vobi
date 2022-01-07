@@ -10,6 +10,7 @@ public class HomePage {
         this.navegador = navegador;
     }
 
+    //função para acessar a pagina "Meus Clientes"
     public ClientesPage listaClientes(){
         navegador.findElement(By.xpath("//aside/ul/li[3]/button")).click();
 
