@@ -10,10 +10,12 @@ public class HomePage {
         this.navegador = navegador;
     }
 
-    public NovoClientePage novoCliente(){
+    public ClientesPage listaClientes(){
         navegador.findElement(By.xpath("//aside/ul/li[3]/button")).click();
 
-        return new NovoClientePage(navegador);
+        return new ClientesPage(navegador);
     }
+
+
 
 }
